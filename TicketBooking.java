@@ -6,7 +6,7 @@ class TicketBookingSystem {
     private final Lock lock = new ReentrantLock();
 
     public void bookSeat(String customer, int priority) {
-        Thread.currentThread().setPriority(priority);
+        Thread.currentThread().setPriority(priority); //Setting Priority
         lock.lock();
         try {
             if (availableSeats > 0) {
@@ -19,6 +19,8 @@ class TicketBookingSystem {
         }
     }
 }
+
+// Extending Thread class
 
 class Customer extends Thread {
     private final TicketBookingSystem system;
@@ -40,7 +42,7 @@ class Customer extends Thread {
 public class TicketBooking {
     public static void main(String[] args) {
         TicketBookingSystem system = new TicketBookingSystem();
-        
+
         Thread vip1 = new Customer(system, "VIP_1", Thread.MAX_PRIORITY);
         Thread vip2 = new Customer(system, "VIP_2", Thread.MAX_PRIORITY);
         Thread regular1 = new Customer(system, "User_1", Thread.NORM_PRIORITY);
